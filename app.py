@@ -6,6 +6,7 @@ from io import BytesIO
 import os
 import PIL
 import requests
+from urllib import request
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
@@ -13,11 +14,20 @@ def init():
     global model
     model = StableDiffusionInstructPix2PixPipeline.from_pretrained("timbrooks/instruct-pix2pix", torch_dtype=torch.float16).to("cuda")
 
-def download_image(url):
+def old_download_image(url):
     image = PIL.Image.open(requests.get(url, stream=True).raw)
     image = PIL.ImageOps.exif_transpose(image)
     image = image.convert("RGB")
     return image
+
+def download_image(url):
+    with request.urlopen(url) as response:
+        image = PIL.Image.open(response)
+        image = PIL.ImageOps.exif_transpose(image)
+        image = image.convert("RGB")
+        
+    return image
+
 
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
