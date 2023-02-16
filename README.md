@@ -1,5 +1,7 @@
 
-# 🍌 instruct-pix2pix for banana
+# 🍌 instruct-pix2pix for banana - supports data uris
+
+eg: https://example.com/image.jpg or data:image/jpeg;base64,AAAAAAAAAAAAAAAAAAA...
 
 A working deployment of [instruct-pix2pix](https://github.com/timothybrooks/instruct-pix2pix) for banana.dev.
 
@@ -13,7 +15,7 @@ instruct-pix2pix is available as a prebult model on Banana! [See how to deploy i
 The model accepts the following inputs:
 
 * `prompt` (required)
-* `image_url` (required, should be 512x512 or another standard Stable Diffusion 1.5 resolution for best results)
+* `image_url` (required, should be 512x512 or another standard Stable Diffusion 1.5 resolution for best results - address or data uri)
 * `negative_prompt` (optional)
 * `seed` (optional)
 * `guidance_scale` (optional, default 7.5)
